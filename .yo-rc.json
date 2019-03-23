@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Josh Wulf",
+      "authorEmail": "josh@magikcraft.io",
+      "authorUrl": ""
+    }
+  }
+}
