@@ -1,4 +1,4 @@
-# generator-scriptcraft-sma [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-scriptcraft-sma-plugin [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 > Scaffold a package for the Scriptcraft Modular Architecture - Minecraft Plugins in Javascript!
 
@@ -8,13 +8,13 @@ First, install [Yeoman](http://yeoman.io) and generator-scriptcraft-sma using [n
 
 ```bash
 npm install -g yo
-npm install -g generator-scriptcraft-sma
+npm install -g generator-scriptcraft-sma-plugin
 ```
 
 Then generate your new project:
 
 ```bash
-yo scriptcraft-sma
+yo scriptcraft-sma-plugin
 ```
 
 ## Getting To Know Yeoman
