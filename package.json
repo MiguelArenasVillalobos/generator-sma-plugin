@@ -1,5 +1,5 @@
 {
-	"name": "generator-scriptcraft-sma-plugin",
+	"name": "generator-sma-plugin",
 	"version": "0.0.3",
 	"description": "Scaffold a package for the Scriptcraft Modular Architecture - Minecraft Plugins in Javascript!",
 	"homepage": "https://www.magikcraft.io",
@@ -72,6 +72,6 @@
 		"pretest": "eslint .",
 		"test": "jest"
 	},
-	"repository": "Magikcraft/generator-scriptcraft-sma",
+	"repository": "Magikcraft/generator-sma-plugin",
 	"license": "Apache-2.0"
 }
