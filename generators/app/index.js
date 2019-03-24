@@ -58,7 +58,7 @@ module.exports = class extends Generator {
 
 	writing() {
 		this.fs.copy(
-			this.templatePath(".gitignore"),
+			this.templatePath("gitignore"),
 			this.destinationPath(".gitignore")
 		);
 		this.fs.copy(
@@ -110,8 +110,11 @@ module.exports = class extends Generator {
 	}
 
 	installDependencies() {
-		this.npmInstall(["prettier", "@scriptcraft/types", "husky"], {
-			"save-dev": true
-		});
+		this.npmInstall(
+			["prettier", "@scriptcraft/types", "husky", "lint-staged"],
+			{
+				"save-dev": true
+			}
+		);
 	}
 };
