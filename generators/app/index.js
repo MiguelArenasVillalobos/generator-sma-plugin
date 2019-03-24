@@ -91,7 +91,7 @@ module.exports = class extends Generator {
 			keywords: this.props.keywords.split(","),
 			author: `${this.props.author} <${this.props.authorEmail}>`,
 			license: "ISC",
-			smaPlugin: {
+			smaPluginConfig: {
 				scriptcraft_load_dir: "autoload"
 			},
 			husky: {
