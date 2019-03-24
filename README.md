@@ -4,17 +4,17 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-scriptcraft-sma using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-sma-plugin using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
-npm install -g generator-scriptcraft-sma-plugin
+npm install -g generator-sma-plugin
 ```
 
 Then generate your new project:
 
 ```bash
-yo scriptcraft-sma-plugin
+yo sma-plugin
 ```
 
 ## Getting To Know Yeoman
