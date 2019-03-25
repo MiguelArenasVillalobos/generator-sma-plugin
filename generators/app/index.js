@@ -111,7 +111,7 @@ module.exports = class extends Generator {
 
 	installDependencies() {
 		this.npmInstall(
-			["prettier", "@scriptcraft/types", "husky", "lint-staged"],
+			["prettier", "@scriptcraft/types", "husky", "lint-staged", "@magikcraft/op-all"],
 			{
 				"save-dev": true
 			}
