@@ -2,12 +2,17 @@
 const Generator = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
+const path = require("path");
+const mkdirp = require("mkdirp");
+const _ = require("lodash");
+const askName = require("inquirer-npm-name");
 
 module.exports = class extends Generator {
 	initializing() {
 		this.composeWith(require.resolve("generator-git-init"));
 	}
 	prompting() {
+		this.props = {};
 		// Have Yeoman greet the user.
 		this.log(
 			yosay(
@@ -17,42 +22,43 @@ module.exports = class extends Generator {
 			)
 		);
 
-		const prompts = [
+		return askName(
 			{
-				type: "input",
 				name: "name",
 				message: "Your package name",
-				default: this.appname // Default to current folder name
+				default: path.basename(process.cwd())
 			},
-			{
-				type: "input",
-				name: "description",
-				message: "Package description",
-				default: "A Scriptcraft SMA package"
-			},
-			{
-				type: "input",
-				name: "keywords",
-				message: "Package keywords",
-				default: "scriptcraft, scriptcraft-sma, plugin, minecraft"
-			},
-			{
-				type: "input",
-				name: "author",
-				message: "Your Name",
-				default: ""
-			},
-			{
-				type: "input",
-				name: "authorEmail",
-				message: "Your Email",
-				default: ""
-			}
-		];
+			this
+		).then(props => {
+			this.props.name = props.name;
+		});
+	}
 
-		return this.prompt(prompts).then(props => {
-			// To access props later use this.props.someAnswer;
-			this.props = props;
+	default() {
+		if (path.basename(this.destinationPath()) !== this.props.name) {
+			this.log(
+				`Your generator must be inside a folder named ${
+					this.props.name
+				}\nI'll automatically create this folder.`
+			);
+			mkdirp(this.props.name);
+			this.destinationRoot(this.destinationPath(this.props.name));
+		}
+		const readmeTpl = _.template(
+			this.fs.read(this.templatePath("README.md"))
+		);
+
+		this.composeWith(require.resolve("generator-node/generators/app"), {
+			boilerplate: false,
+			editorconfig: false,
+			travis: false,
+			name: this.props.name,
+			projectRoot: "generators",
+			skipInstall: this.options.skipInstall,
+			readme: readmeTpl({
+				generatorName: this.props.name,
+				yoName: this.props.name.replace("generator-", "")
+			})
 		});
 	}
 
@@ -60,6 +66,10 @@ module.exports = class extends Generator {
 		this.fs.copy(
 			this.templatePath("gitignore"),
 			this.destinationPath(".gitignore")
+		);
+		this.fs.copy(
+			this.templatePath("editorconfig"),
+			this.destinationPath(".editorconfig")
 		);
 		this.fs.copy(
 			this.templatePath(".prettierrc"),
@@ -85,22 +95,16 @@ module.exports = class extends Generator {
 			{ name: this.props.name }
 		);
 		this.fs.extendJSON(this.destinationPath("package.json"), {
-			name: this.props.name,
-			version: "1.0.0",
-			description: this.props.description,
-			keywords: this.props.keywords.split(","),
-			author: `${this.props.author} <${this.props.authorEmail}>`,
-			license: "ISC",
 			smaPluginConfig: {
 				scriptcraft_load_dir: "autoload"
 			},
 			husky: {
 				hooks: {
-					"pre-commit": "lint-staged"
+					"pre-commit": "tsc && lint-staged"
 				}
 			},
 			"lint-staged": {
-				"*.{ts,js,json,css,md}": ["prettier --write", "tsc", "git add"]
+				"*.{ts,json,css,md}": ["prettier --write", "tsc", "git add"]
 			}
 		});
 	}
@@ -111,7 +115,13 @@ module.exports = class extends Generator {
 
 	installDependencies() {
 		this.npmInstall(
-			["prettier", "@scriptcraft/types", "husky", "lint-staged", "@magikcraft/op-all"],
+			[
+				"prettier",
+				"@scriptcraft/types",
+				"husky",
+				"lint-staged",
+				"@magikcraft/op-all"
+			],
 			{
 				"save-dev": true
 			}
