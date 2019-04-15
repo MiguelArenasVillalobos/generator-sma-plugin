@@ -149,17 +149,18 @@ module.exports = class extends Generator {
 	}
 
 	end() {
+		this.log("\n" + chalk.yellow("===  Congratulations  ==="));
 		this.log(
-			`Your new plugin has been created in the directory ${
+			`Your new plugin has been created in the directory ${chalk.green(
 				this.props.name
-			}`
+			)}`
 		);
 		this.log(
-			"Remember to start the TypeScript transpiler in that directory with the command:"
+			"\nRemember to start the TypeScript transpiler in that directory with the command:"
 		);
-		this.log("tsc -w");
+		this.log(chalk.magenta("tsc -w"));
 		this.log(
-			`\nCheck the README.md for how to start a development server to test your plugin.`
+			`\nCheck your plugin's README.md for how to start a development server to test your plugin.`
 		);
 	}
 };
