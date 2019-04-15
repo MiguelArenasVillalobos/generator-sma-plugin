@@ -1,21 +1,78 @@
-## Installation
+# <%= name %>
 
-First, install [Yeoman](http://yeoman.io) and <%- generatorName %> using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+This is a Minecraft plugin written for the Scriptcraft Modular Architecture.
 
-```bash
-npm install -g yo
-npm install -g <%- generatorName %>
-```
+## Building
 
-Then generate your new project:
+-   Install the TypeScript compiler:
 
 ```bash
-yo <%- yoName %>
+npm i -g typescript
 ```
 
-## Getting To Know Yeoman
+-   Start the TypeScript compiler:
 
--   Yeoman has a heart of gold.
--   Yeoman is a person with feelings and opinions, but is very easy to work with.
--   Yeoman can be too opinionated at times but is easily convinced not to be.
--   Feel free to [learn more about Yeoman](http://yeoman.io/).
+```bash
+tsc
+```
+
+To start the compiler in watch mode (recompile on file save):
+
+```bash
+tsc -w
+```
+
+## Running a development server
+
+You can start a development server and test your code using `smac` - the Scriptcraft Modular Architecture.
+
+-   Make sure you have Docker installed on your computer.
+-   Install `smac` globally:
+
+```bash
+npm i -g smac
+```
+
+Your plugin contains server profiles for both a Bukkit server (supports the Java Minecraft client) and a Nukkit server (supports Minecraft Pocket Edition).
+
+## Start a Bukkit Server
+
+-   To start a Bukkit development server:
+
+```bash
+smac start
+```
+
+This uses the profile in `smac.json`.
+
+## Start a Nukkit Server
+
+-   To start a Nukkit development server:
+
+```bash
+smac start -f smac-nukkit.json
+```
+
+This uses the profile in `smac-nukkit.json`
+
+## Reloading your code
+
+As you change your code, you can reload the changes in the running server by typing in the server console:
+
+```
+ts refresh()
+```
+
+To switch on TypeScript mode, type in the server console:
+
+```
+ts on
+```
+
+This allows you to execute TypeScript code directly in the server console. Now you need only type `refresh()` to refresh your code in the server.
+
+To turn off TypeScript mode, type:
+
+```
+ts off
+```

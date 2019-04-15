@@ -1,0 +1,27 @@
+{
+	"name": "<%= name %>-nukkit",
+	"version": "1.0.0",
+	"keywords": ["scriptcraft", "scriptcraft-sma", "server"],
+	"author": "",
+	"license": "ISC",
+	"smaServerConfig": {
+		"dockerTag": "latest",
+		"serverName": "<%= name %>-nukkit",
+		"serverType": "nukkit",
+		"memory": "1024",
+		"node_modules": false,
+		"bind": [
+			{
+				"src": "./",
+				"dst": "scriptcraft-plugins/<%= name %>"
+			},
+			{
+				"src": "./node_modules/@magikcraft/op-all",
+				"dst": "scriptcraft-plugins/@magikcraft/op-all"
+			}
+		]
+	},
+	"dependencies": {
+		"@magikcraft/op-all": "^1.0.0"
+	}
+}
