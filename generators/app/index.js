@@ -54,16 +54,6 @@ module.exports = class extends Generator {
 			projectRoot: "generators",
 			skipInstall: this.options.skipInstall
 		});
-		this.composeWith(require.resolve("generator-node/generators/readme"), {
-			travis: false,
-			name: this.props.name,
-			projectRoot: "generators",
-			skipInstall: this.options.skipInstall,
-			readme: readmeTpl({
-				name: this.props.name,
-				yoName: this.props.name.replace("generator-", "")
-			})
-		});
 	}
 
 	writing() {
@@ -99,8 +89,8 @@ module.exports = class extends Generator {
 			this.destinationPath(".vscode/settings.json")
 		);
 		this.fs.copyTpl(
-			this.template("__tests__"),
-			this.destinationPath("__tests__"),
+			this.templatePath("__tests__/test.spec.ts"),
+			this.destinationPath("__tests__/test.spec.ts"),
 			{ name: this.props.name }
 		);
 		this.fs.copyTpl(
@@ -111,6 +101,16 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(
 			this.templatePath("lib/log.ts"),
 			this.destinationPath("lib/log.ts"),
+			{ name: this.props.name }
+		);
+		this.fs.copyTpl(
+			this.templatePath("README.md"),
+			this.destinationPath("README.md"),
+			{ name: this.props.name }
+		);
+		this.fs.copyTpl(
+			this.templatePath("lib/index.ts"),
+			this.destinationPath("lib/index.ts"),
 			{ name: this.props.name }
 		);
 		this.fs.extendJSON(this.destinationPath("package.json"), {

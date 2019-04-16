@@ -13,6 +13,6 @@
 		"paths": {
 			"<%= name %>/*": ["./*"]
 		},
-		"types": ["@scriptcraft/types"]
+		"types": ["@scriptcraft/types", "@types/jasmine"]
 	}
 }
