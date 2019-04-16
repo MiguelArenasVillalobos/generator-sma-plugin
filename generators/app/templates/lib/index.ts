@@ -3,5 +3,5 @@
  */
 
 export function something() {
-	return
+	return 'Hello'
 }

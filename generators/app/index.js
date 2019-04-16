@@ -99,6 +99,11 @@ module.exports = class extends Generator {
 			this.destinationPath(".vscode/settings.json")
 		);
 		this.fs.copyTpl(
+			this.template("__tests__"),
+			this.destinationPath("__tests__"),
+			{ name: this.props.name }
+		);
+		this.fs.copyTpl(
 			this.templatePath("autoload/index.ts"),
 			this.destinationPath("autoload/index.ts"),
 			{ name: this.props.name }
@@ -137,7 +142,8 @@ module.exports = class extends Generator {
 				"@scriptcraft/types",
 				"husky",
 				"lint-staged",
-				"@magikcraft/op-all"
+				"@magikcraft/op-all",
+				"@types/jasmine"
 			],
 			{
 				"save-dev": true
@@ -149,18 +155,20 @@ module.exports = class extends Generator {
 	}
 
 	end() {
-		this.log("\n" + chalk.yellow("===  Congratulations  ==="));
+		this.log("\n" + chalk.yellow("===  Congratulations!!  ==="));
 		this.log(
-			`Your new plugin has been created in the directory ${chalk.green(
+			`\nYour new plugin has been created in the directory: ${chalk.green(
 				this.props.name
-			)}`
+			)}.`
 		);
 		this.log(
 			"\nRemember to start the TypeScript transpiler in that directory with the command:"
 		);
-		this.log(chalk.magenta("tsc -w"));
+		this.log(chalk.magenta("\ntsc -w"));
 		this.log(
-			`\nCheck your plugin's README.md for how to start a development server to test your plugin.`
+			`\nCheck the README file in the ${
+				this.props.name
+			} directory for instructions to start a development server and test your plugin.`
 		);
 	}
 };

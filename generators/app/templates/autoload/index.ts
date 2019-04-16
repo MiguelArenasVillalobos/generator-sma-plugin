@@ -1,6 +1,5 @@
 /**
- * Any code that should automatically run when this plugin is loaded should go in the autoload directory.
- * Every file in this directory is autoloaded.
+ * Any files in this directory are automatically run when this plugin is loaded.
  * Remember to transpile to JavaScript!
  */
 import { Logger } from '<%= name %>/lib/log'

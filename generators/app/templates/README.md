@@ -76,3 +76,26 @@ To turn off TypeScript mode, type:
 ```
 ts off
 ```
+
+## Running Unit Tests
+
+SMA Plugins provide unit testing using Jasmine.
+
+To run unit tests for your plugins, write them in `__tests__` and compile them.
+
+Then run smac in test mode:
+
+```bash
+smac start -t
+```
+
+This will start the container in test mode. Code will not be autoloaded, and the unit tests will be run.
+
+To have the container exit after the tests have run, start it with the `-e` flag.
+
+```bash
+# Run tests and exit
+smac start -t -e
+```
+
+The process will exit with exit code 0 if all tests pass, and exit code 1 if any of the test fail.
