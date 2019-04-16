@@ -9,7 +9,7 @@
 		"serverName": "<%= name %>-server",
 		"serverType": "bukkit",
 		"memory": "1024",
-		"node_modules": false,
+		"node_modules": true,
 		"bind": [
 			{
 				"src": "./",
