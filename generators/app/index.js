@@ -117,6 +117,10 @@ module.exports = class extends Generator {
 			name: this.props.name,
 			version: "0.0.1",
 			main: "lib/index.ts",
+			scripts: {
+				test: "smac -t -e start",
+				start: "tsc -w"
+			},
 			smaPluginConfig: {
 				scriptcraft_load_dir: "autoload"
 			},
