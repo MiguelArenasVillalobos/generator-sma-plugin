@@ -118,8 +118,12 @@ module.exports = class extends Generator {
 			version: "0.0.1",
 			main: "lib/index.ts",
 			scripts: {
-				test: "smac -t -e start",
-				start: "tsc -w"
+				test: "smac start -t -e",
+				start: 'concurrently --handle-input "smac start" "tsc -w"',
+				"start:nukkit":
+					'concurrently --handle-input "smac start -f smac-nukkit.json" "tsc -w"',
+				"start:bukkit":
+					'concurrently  --handle-input "smac start" "tsc -w"'
 			},
 			smaPluginConfig: {
 				scriptcraft_load_dir: "autoload"
@@ -143,6 +147,7 @@ module.exports = class extends Generator {
 		this.npmInstall(
 			[
 				"prettier",
+				"concurrently",
 				"@scriptcraft/types",
 				"husky",
 				"lint-staged",
