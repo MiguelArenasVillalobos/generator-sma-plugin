@@ -119,11 +119,12 @@ module.exports = class extends Generator {
 			main: "lib/index.ts",
 			scripts: {
 				test: "smac start -t -e",
-				start: 'concurrently --handle-input "smac start" "tsc -w"',
+				start:
+					'tsc && concurrently --handle-input "smac start" "tsc -w"',
 				"start:nukkit":
-					'concurrently --handle-input "smac start -f smac-nukkit.json" "tsc -w"',
+					'tsc && concurrently --handle-input "smac start -f smac-nukkit.json" "tsc -w"',
 				"start:bukkit":
-					'concurrently  --handle-input "smac start" "tsc -w"'
+					'tsc && concurrently  --handle-input "smac start" "tsc -w"'
 			},
 			smaPluginConfig: {
 				scriptcraft_load_dir: "autoload"
