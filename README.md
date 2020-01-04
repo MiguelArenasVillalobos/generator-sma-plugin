@@ -1,4 +1,4 @@
-# generator-scriptcraft-sma-plugin [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-sma-plugin [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 > Scaffold a package for the Scriptcraft Modular Architecture - Minecraft Plugins in Javascript!
 

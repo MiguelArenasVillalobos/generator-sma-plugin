@@ -1,6 +1,6 @@
 {
 	"name": "generator-sma-plugin",
-	"version": "0.0.16",
+	"version": "0.0.17",
 	"description": "Scaffold a package for the Scriptcraft Modular Architecture - Minecraft Plugins in Javascript!",
 	"homepage": "https://www.magikcraft.io",
 	"author": {
