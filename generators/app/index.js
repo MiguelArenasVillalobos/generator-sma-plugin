@@ -5,13 +5,13 @@ const yosay = require("yosay");
 const path = require("path");
 const mkdirp = require("mkdirp");
 const _ = require("lodash");
-const askName = require("inquirer-npm-name");
+const prompts = require('prompts');
 
 module.exports = class extends Generator {
 	initializing() {
 		this.composeWith(require.resolve("generator-git-init"));
 	}
-	prompting() {
+	async prompting() {
 		this.props = {};
 		// Have Yeoman greet the user.
 		this.log(
@@ -22,16 +22,14 @@ module.exports = class extends Generator {
 			)
 		);
 
-		return askName(
-			{
-				name: "name",
-				message: "Your package name",
-				default: path.basename(process.cwd())
-			},
-			this
-		).then(props => {
-			this.props.name = props.name;
-		});
+	const response = await prompts({
+		type: 'text',
+		name: 'name',
+		message: 'Your package name',
+		initial: path.basename(process.cwd())
+	});
+
+	this.props.name = response.name
 	}
 
 	default() {
